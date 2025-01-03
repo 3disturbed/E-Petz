@@ -36,6 +36,7 @@ E-Petz is an interactive idle game where players can:
 ---
 
 ## Features
+![Wallpaper](https://github.com/user-attachments/assets/c9521acf-31d2-4b54-8b7e-f527d9913037)
 
 - **Random Egg Hatching:** Discover a wide variety of pet species and traits.
 - **Mission System:** Send pets on missions to earn experience and loot.
