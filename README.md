@@ -3,7 +3,7 @@
 ![EpetzLogo](https://github.com/user-attachments/assets/3a916d47-bcaa-49ce-b4b2-7670af6c29fb)
 
 ## Web UI Micro Management Pet Game
-![Wallpaper](https://github.com/user-attachments/assets/612d6b63-a8c4-4253-b08a-67d0b0fc871d)
+
 # E-Petz Idle Game
 
 Welcome to the **E-Petz Idle Game** repository! This project features an HTML5 Canvas-based idle game where players can hatch, train, and breed pets, embark on missions, and explore a rich economy-driven world. 
@@ -23,7 +23,7 @@ Welcome to the **E-Petz Idle Game** repository! This project features an HTML5 C
 ---
 
 ## Project Overview
-
+![Wallpaper](https://github.com/user-attachments/assets/612d6b63-a8c4-4253-b08a-67d0b0fc871d)
 E-Petz is an interactive idle game where players can:
 - Hatch random pets from eggs.
 - Send pets on missions to earn rewards.
