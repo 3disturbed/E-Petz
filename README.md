@@ -24,6 +24,7 @@ Welcome to the **E-Petz Idle Game** repository! This project features an HTML5 C
 
 ## Project Overview
 ![Wallpaper](https://github.com/user-attachments/assets/612d6b63-a8c4-4253-b08a-67d0b0fc871d)
+
 E-Petz is an interactive idle game where players can:
 - Hatch random pets from eggs.
 - Send pets on missions to earn rewards.
@@ -48,6 +49,7 @@ E-Petz is an interactive idle game where players can:
 ---
 
 ## How to Play
+![image](https://github.com/user-attachments/assets/689d6575-b927-4ac9-92ee-7d273df2de64)
 
 1. Open the game in a web browser.
 2. Click on the eggs to hatch pets.
