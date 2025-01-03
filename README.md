@@ -15,10 +15,9 @@ Welcome to the **E-Petz Idle Game** repository! This project features an HTML5 C
 1. [Project Overview](#project-overview)
 2. [Features](#features)
 3. [How to Play](#how-to-play)
-4. [Installation](#installation)
-5. [Technologies Used](#technologies-used)
-6. [Contributing](#contributing)
-7. [License](#license)
+4. [Technologies Used](#technologies-used)
+5. [Contributing](#contributing)
+6. [License](#license)
 
 ---
 
@@ -59,21 +58,6 @@ E-Petz is an interactive idle game where players can:
 
 [Return to Table of Contents](#table-of-contents)
 
----
-
-## Installation
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/your-username/e-petz.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd e-petz
-    ```
-3. Open the `index.html` file in your favorite browser.
-
-[Return to Table of Contents](#table-of-contents)
 
 ---
 
