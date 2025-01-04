@@ -76,6 +76,7 @@ E-Petz is an interactive idle game where players can:
 [Return to Table of Contents](#table-of-contents)
 
 ### Inventory Management
+![image](https://github.com/user-attachments/assets/c57ee461-a561-4793-9e18-ea79958ac7c8)
 
 A dynamic inventory screen displaying all the items, pets, and Genetix Runes a player possesses. Includes:
 - Filters for sorting by rarity, type, and usage.
