@@ -66,9 +66,105 @@ E-Petz is an interactive idle game where players can:
 
 [Return to Table of Contents](#table-of-contents)
 
+### Inventory Management
 
+A dynamic inventory screen displaying all the items, pets, and Genetix Runes a player possesses. Includes:
+- Filters for sorting by rarity, type, and usage.
+- Options to equip, use, or trade items.
 
---- 
+[Return to Table of Contents](#table-of-contents)
+
+### Player Profile Management
+
+A profile dashboard where players can:
+- View their stats, achievements, and progress.
+- Customize their avatar and username.
+- Review game history and milestones.
+
+[Return to Table of Contents](#table-of-contents)
+
+### Auction Manager
+
+An interface to:
+- List pets, eggs, and items for auction.
+- Place bids and review ongoing auctions.
+- Filter auctions by rarity, type, or price range.
+
+[Return to Table of Contents](#table-of-contents)
+
+### Friends List
+
+A social feature to:
+- Add, remove, and view friends.
+- See friends' activity and progress.
+- Send and receive in-game gifts.
+
+[Return to Table of Contents](#table-of-contents)
+
+### Pet Manager
+
+A dedicated screen to:
+- View all owned pets and their stats.
+- Equip Genetix Runes and manage skill upgrades.
+- Assign pets to missions or breeding.
+
+[Return to Table of Contents](#table-of-contents)
+
+### Quests Screen
+
+An overview of all active and available quests. Includes:
+- Details about quest requirements and rewards.
+- Progress tracking for ongoing quests.
+- Quick assignment of pets to specific quests.
+
+[Return to Table of Contents](#table-of-contents)
+
+### Global Chat Modal
+
+A real-time chat window allowing players to:
+- Communicate with the community.
+- Organize trades or share strategies.
+- Access moderated chat channels.
+
+[Return to Table of Contents](#table-of-contents)
+
+### Direct Messages Modal
+
+Floating modals for private conversations with other players. Features include:
+- Real-time chat functionality.
+- Notifications for unread messages.
+- Option to block or report users directly from the modal.
+
+[Return to Table of Contents](#table-of-contents)
+
+### Notifications Inbox
+
+Centralized location for all game notifications, including:
+- Updates on auction bids and sales.
+- Alerts for quest completions or mission failures.
+- System announcements or events.
+
+[Return to Table of Contents](#table-of-contents)
+
+### Store Page
+
+An in-game shop offering:
+- Consumables and power-ups for pets.
+- Special event items and rare Genetix Runes.
+- Exclusive cosmetic items for player customization.
+
+[Return to Table of Contents](#table-of-contents)
+
+### VIP Manager
+
+A feature integrated into the player profile for VIP subscribers. Includes:
+- Special rewards and perks exclusive to VIP members.
+- Tracking of subscription status and renewal dates.
+- Highlighting VIP status with a star icon beside the player’s name in chat and leaderboard.
+
+[Return to Table of Contents](#table-of-contents)
+
+---
 ## How to Play
 ![image](https://github.com/user-attachments/assets/689d6575-b927-4ac9-92ee-7d273df2de64)
 
@@ -82,16 +178,21 @@ E-Petz is an interactive idle game where players can:
 
 
 ---
-
 ## Technologies Used
 
+- **NodeJS For Serving and Endpoints.
+- **MongoDB for Database
 - **HTML5 Canvas** for rendering.
-- **JavaScript** for game logic and interactivity.
+- **Native JavaScript** for game logic and interactivity.
+- **SocketIO for multiplayer Interactions and SPA Updates
 - **CSS** for styling.
 
 [Return to Table of Contents](#table-of-contents)
 
----
+
+--- 
+
+
 
 ## Contributing
 
