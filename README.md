@@ -9,17 +9,26 @@
 Welcome to the **E-Petz Idle Game** repository! This project features an HTML5 Canvas-based idle game where players can hatch, train, and breed pets, embark on missions, and explore a rich economy-driven world. 
 
 ---
-
 ## Table of Contents
 
 1. [Project Overview](#project-overview)
 2. [Features](#features)
-3. [UI-Design](#ui-design)
-4. [How to Play](#how-to-play)
+3. [How to Play](#how-to-play)
+4. [UI Design](#ui-design)
+   - [Inventory Management](#inventory-management)
+   - [Player Profile Management](#player-profile-management)
+   - [Auction Manager](#auction-manager)
+   - [Friends List](#friends-list)
+   - [Pet Manager](#pet-manager)
+   - [Quests Screen](#quests-screen)
+   - [Global Chat Modal](#global-chat-modal)
+   - [Direct Messages Modal](#direct-messages-modal)
+   - [Notifications Inbox](#notifications-inbox)
+   - [Store Page](#store-page)
+   - [VIP Manager](#vip-manager)
 5. [Technologies Used](#technologies-used)
 6. [Contributing](#contributing)
 7. [License](#license)
-
 ---
 
 ## Project Overview
