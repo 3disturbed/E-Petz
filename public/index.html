@@ -5,14 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EPetz</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .fixed-right-navbar {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            display: none; /* Hidden by default */
+            flex-direction: row; /* Change to row */
+            background-color: rgba(255, 255, 255, 0.0); /* Make transparent */
+            padding: 10px;
+        }
+        .fixed-right-navbar button {
+            margin: 0 5px; /* Adjust margin for row layout */
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-logo">
             <img src="./Images/EpetzLogoAlt.png" alt="EPetz Logo" class="nav-logo-img">
         </div>
-        <div class="nav-links">
-            <button id="PlayButton" onclick="toggleModal(true)">Play Now!</a>
+        <div class="nav-links" id="nav-links">
+            <button id="PlayButton" onclick="toggleModal(true)">Play Now!</button>
         </div>
     </nav>
 
@@ -32,12 +46,106 @@
             <div id="registerForm" style="display: none;">
                 <form id="register-form" onsubmit="handleRegister(event)">
                     <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="text" name="username" placeholder="Username" required>
                     <input type="email" name="email" placeholder="Email" required>
                     <input type="password" name="password" placeholder="Password" required>
                     <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
                     <button type="submit">Register</button>
                 </form>
                 <p><hr>Already have an account? <br><a href="#" onclick="toggleForms()">Login</a><hr></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashboardModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="toggleModal(false, 'dashboardModal')">&times;</span>
+            <h2>Dashboard</h2>
+            <!-- Dashboard content goes here -->
+        </div>
+    </div>
+
+    <!-- Additional modals for Store, Pets, Quests, Inventory, Auctions, Inbox, Social, Profile -->
+    <div id="storeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="toggleModal(false, 'storeModal')">&times;</span>
+            <h2>Store</h2>
+            <!-- Store content goes here -->
+        </div>
+    </div>
+    <div id="petsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="toggleModal(false, 'petsModal')">&times;</span>
+            <h2>Pets</h2>
+            <!-- Pets content goes here -->
+        </div>
+    </div>
+    <div id="questsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="toggleModal(false, 'questsModal')">&times;</span>
+            <h2>Quests</h2>
+            <!-- Quests content goes here -->
+        </div>
+    </div>
+    <div id="inventoryModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="toggleModal(false, 'inventoryModal')">&times;</span>
+            <h2>Inventory</h2>
+            <!-- Inventory content goes here -->
+        </div>
+    </div>
+    <div id="auctionsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="toggleModal(false, 'auctionsModal')">&times;</span>
+            <h2>Auctions</h2>
+            <!-- Auctions content goes here -->
+        </div>
+    </div>
+    <div id="inboxModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="toggleModal(false, 'inboxModal')">&times;</span>
+            <h2>Inbox</h2>
+            <!-- Inbox content goes here -->
+        </div>
+    </div>
+    <div id="socialModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="toggleModal(false, 'socialModal')">&times;</span>
+            <h2>Social</h2>
+            <!-- Social content goes here -->
+        </div>
+    </div>
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="toggleModal(false, 'profileModal')">&times;</span>
+            <h2>My Profile</h2>
+            <!-- Profile content goes here -->
+        </div>
+    </div>
+
+    <div id="globalChatModal" class="modal">
+        <div class="modal-content gc">
+            <div class="chat-header">
+                <h2>Chat</h2>
+                <span class="close-button" onclick="toggleModal(false, 'globalChatModal')">&times;</span>
+            </div>
+            <div class="chat-tabs">
+                <button class="chat-tab" data-channel="The Inn">Inn</button>
+                <button class="chat-tab" data-channel="The Park">Park</button>
+                <button class="chat-tab" data-channel="The Groomers">Groomers</button>
+                <button class="chat-tab" data-channel="Pet Center">Pet Center</button>
+                <button class="chat-tab" data-channel="Vet">Vet</button>
+                <button class="chat-tab" data-channel="Mall">Mall</button>
+                <button class="chat-tab" data-channel="Auction">Auction</button>
+            </div>
+            <div class="chat-content">
+                <div id="chatMessages">
+                    <!-- Chat messages will appear here -->
+                </div>
+                <div class="chat-input-container">
+                    <input type="text" id="chatInput" placeholder="Type a message..." required>
+                    <button onclick="handleGlobalChatSend()">Send</button>
+                </div>
             </div>
         </div>
     </div>
@@ -49,6 +157,13 @@
     <footer class="footer">
         <a href="/privacy.html">Privacy Agreement</a>
     </footer>
+    <div class="fixed-right-navbar" id="fixed-right-navbar">
+        <button onclick="toggleModal(true, 'inboxModal')">Inbox</button>
+        <button onclick="toggleModal(true, 'socialModal')">Social</button>
+        <button onclick="toggleModal(true, 'profileModal')">My Profile</button>
+        <button onclick="toggleModal(true, 'globalChatModal')">Global Chat</button>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>
 </body>
 </html>
