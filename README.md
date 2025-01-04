@@ -182,9 +182,23 @@ A feature integrated into the player profile for VIP subscribers. Includes:
 
 1. Open the game in a web browser.
 2. Click on the eggs to hatch pets.
-3. Assign pets to missions to earn rewards.
-4. Use earned rewards to equip pets with Genetix Runes or breed new pets.
-5. Trade and strategize with other players to build your pet collection.
+   - ** Common Egg (Can be Purchased)
+   ![CommonEgg](https://github.com/user-attachments/assets/e61d82fa-5ac5-4e50-b582-37b1c83bf813)
+   - ** Uncommon Egg (Has to be earned)
+   ![UncommonEgg](https://github.com/user-attachments/assets/35d73bcd-d645-4211-9822-d34ad08c49ef)
+   - ** Rare Egg (Has to be earned)
+   ![RareEgg](https://github.com/user-attachments/assets/65b89388-5b6c-4d95-b666-994919169cd8)
+   - ** Epic Egg (Has to be earned)
+   ![EpicEgg](https://github.com/user-attachments/assets/07438711-13f2-46ea-9109-e13013859d65)
+   - ** Legendary Egg (Has to be earned)
+   ![LegendEgg](https://github.com/user-attachments/assets/5a97402d-6ec6-4a0a-a7ce-72d3d80b35bb)
+   - ** Mythical Egg (Has to be earned)
+   ![MythicEgg](https://github.com/user-attachments/assets/0a5d118f-ea70-44d2-8cfd-cd55c33cb3ce)
+
+
+4. Assign pets to missions to earn rewards.
+5. Use earned rewards to equip pets with Genetix Runes or breed new pets.
+6. Trade and strategize with other players to build your pet collection.
 
 [Return to Table of Contents](#table-of-contents)
 
