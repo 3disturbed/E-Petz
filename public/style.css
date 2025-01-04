@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     height: 100vh;
-    background-image: url('Wallpaper.webp');
+    background-image: url('./Images/Wallpaper.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -62,6 +62,12 @@ body {
     z-index: 1001;
     align-items: center;
     justify-content: center;
+}
+
+.modal_logo {
+    max-width: 200px;
+    height: auto;
+    opacity: 1;
 }
 
 .close-button {
