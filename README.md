@@ -105,6 +105,7 @@ An interface to:
 [Return to Table of Contents](#table-of-contents)
 
 ### Friends List
+![image](https://github.com/user-attachments/assets/78c562ed-f45a-42f5-9a0a-9c67d6c9a564)
 
 A social feature to:
 - Add, remove, and view friends.
