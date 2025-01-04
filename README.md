@@ -144,8 +144,8 @@ A real-time chat window allowing players to:
 
 ### Direct Messages Modal
 ![image](https://github.com/user-attachments/assets/6729ef91-5e71-41b0-9fb4-c9658d55858b)
-**
-Floating modals for private conversations with other players. Features include:
+** Floating modals for private conversations with other players. ** 
+Features include:
 - Real-time chat functionality.
 - Notifications for unread messages.
 - Option to block or report users directly from the modal.
@@ -186,17 +186,17 @@ A feature integrated into the player profile for VIP subscribers. Includes:
 
 1. Open the game in a web browser.
 2. Click on the eggs to hatch pets.
-   - ** Common Egg (Can be Purchased)
+   - ** Common Egg ** (Can be Purchased)
    ![CommonEgg](https://github.com/user-attachments/assets/e61d82fa-5ac5-4e50-b582-37b1c83bf813)
-   - ** Uncommon Egg (Has to be earned)
+   - ** Uncommon Egg ** (Has to be earned)
    ![UncommonEgg](https://github.com/user-attachments/assets/35d73bcd-d645-4211-9822-d34ad08c49ef)
-   - ** Rare Egg (Has to be earned)
+   - ** Rare Egg ** (Has to be earned)
    ![RareEgg](https://github.com/user-attachments/assets/65b89388-5b6c-4d95-b666-994919169cd8)
-   - ** Epic Egg (Has to be earned)
+   - ** Epic Egg ** (Has to be earned)
    ![EpicEgg](https://github.com/user-attachments/assets/07438711-13f2-46ea-9109-e13013859d65)
-   - ** Legendary Egg (Has to be earned)
+   - ** Legendary Egg ** (Has to be earned)
    ![LegendEgg](https://github.com/user-attachments/assets/5a97402d-6ec6-4a0a-a7ce-72d3d80b35bb)
-   - ** Mythical Egg (Has to be earned)
+   - ** Mythical Egg ** (Has to be earned)
    ![MythicEgg](https://github.com/user-attachments/assets/0a5d118f-ea70-44d2-8cfd-cd55c33cb3ce)
 
 
@@ -210,11 +210,11 @@ A feature integrated into the player profile for VIP subscribers. Includes:
 ---
 ## Technologies Used
 
-- **NodeJS For Serving and Endpoints.
-- **MongoDB for Database
+- **NodeJS** For Serving and Endpoints.
+- **MongoDB** for Database
 - **HTML5 Canvas** for rendering.
 - **Native JavaScript** for game logic and interactivity.
-- **SocketIO for multiplayer Interactions and SPA Updates
+- **SocketIO** for multiplayer Interactions and SPA Updates
 - **CSS** for styling.
 
 [Return to Table of Contents](#table-of-contents)
