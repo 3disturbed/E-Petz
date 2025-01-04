@@ -142,7 +142,8 @@ A real-time chat window allowing players to:
 [Return to Table of Contents](#table-of-contents)
 
 ### Direct Messages Modal
-
+![image](https://github.com/user-attachments/assets/6729ef91-5e71-41b0-9fb4-c9658d55858b)
+**
 Floating modals for private conversations with other players. Features include:
 - Real-time chat functionality.
 - Notifications for unread messages.
