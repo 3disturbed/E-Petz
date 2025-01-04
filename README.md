@@ -85,6 +85,7 @@ A dynamic inventory screen displaying all the items, pets, and Genetix Runes a p
 [Return to Table of Contents](#table-of-contents)
 
 ### Player Profile Management
+![image](https://github.com/user-attachments/assets/8829db34-c745-4052-83b6-af6e67379808)
 
 A profile dashboard where players can:
 - View their stats, achievements, and progress.
@@ -166,6 +167,7 @@ An in-game shop offering:
 [Return to Table of Contents](#table-of-contents)
 
 ### VIP Manager
+![image](https://github.com/user-attachments/assets/27a5f3b1-3542-4332-b592-e0755e1d865c)
 
 A feature integrated into the player profile for VIP subscribers. Includes:
 - Special rewards and perks exclusive to VIP members.
