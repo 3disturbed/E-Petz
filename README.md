@@ -51,7 +51,7 @@ E-Petz is an interactive idle game where players can:
 
 ## UI Design
 
-![image](https://github.com/user-attachments/assets/06093b77-fd6b-42f2-9cb3-cee083c1cfeb)
+![image](https://github.com/user-attachments/assets/8dd9102d-5d5c-4500-b026-2b2c7747d5b1)
 
 - **Aiming for large image background with fixed Header and Footer and modal-based content.**
 - **Feel Like an App, not a website, using SPA and Modal Management.**
