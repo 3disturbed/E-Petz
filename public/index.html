@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPetz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src="EpetzLogo.png" alt="EPetz Logo" class="nav-logo-img">
+        </div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/services">Services</a>
+            <a href="#" onclick="toggleModal(true)">Login</a>
+        </div>
+    </nav>
+
+    <div id="loginModal" class="modal">
+        <div class="login-container">
+            <span class="close-button" onclick="toggleModal(false)">&times;</span>
+            <div id="loginForm">
+                <form id="login-form" onsubmit="handleLogin(event)">
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p><hr>Don't have an account? <br><a href="#" onclick="toggleForms()">Register</a><hr></p>
+            </div>
+
+            <div id="registerForm" style="display: none;">
+                <form id="register-form" onsubmit="handleRegister(event)">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+                    <button type="submit">Register</button>
+                </form>
+                <p><hr>Already have an account? <br><a href="#" onclick="toggleForms()">Login</a><hr></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- Your main page content goes here -->
+    </div>
+
+    <footer class="footer">
+        <a href="/privacy.html">Privacy Agreement</a>
+    </footer>
+    <script src="client.js"></script>
+</body>
+</html>
