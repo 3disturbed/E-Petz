@@ -133,6 +133,7 @@ An overview of all active and available quests. Includes:
 [Return to Table of Contents](#table-of-contents)
 
 ### Global Chat Modal
+![image](https://github.com/user-attachments/assets/c15057ac-5c02-4664-8fc2-e4753ab80460)
 
 A real-time chat window allowing players to:
 - Communicate with the community.
