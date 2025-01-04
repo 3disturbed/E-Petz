@@ -14,10 +14,11 @@ Welcome to the **E-Petz Idle Game** repository! This project features an HTML5 C
 
 1. [Project Overview](#project-overview)
 2. [Features](#features)
-3. [How to Play](#how-to-play)
-4. [Technologies Used](#technologies-used)
-5. [Contributing](#contributing)
-6. [License](#license)
+3. [UI-Design](#ui-design)
+4. [How to Play](#how-to-play)
+5. [Technologies Used](#technologies-used)
+6. [Contributing](#contributing)
+7. [License](#license)
 
 ---
 
@@ -48,6 +49,26 @@ E-Petz is an interactive idle game where players can:
 
 ---
 
+## UI Design
+
+![image](https://github.com/user-attachments/assets/06093b77-fd6b-42f2-9cb3-cee083c1cfeb)
+
+- **Aiming for large image background with fixed Header and Footer and modal-based content.**
+- **Feel Like an App, not a website, using SPA and Modal Management.**
+
+### Login / Register Modal
+
+![image](https://github.com/user-attachments/assets/5c4d585c-ac95-4daf-a6c0-070daf3b9e81)
+
+- Simple, clean design with bright, noisy images full of color.
+- The color scheme transitions from blue (signifying Common to Rare) to gold (Legendary to Mythic) across the screen, subtly indicating game progression.
+- The UI should feel app-like, vibrant, and modern.
+
+[Return to Table of Contents](#table-of-contents)
+
+
+
+--- 
 ## How to Play
 ![image](https://github.com/user-attachments/assets/689d6575-b927-4ac9-92ee-7d273df2de64)
 
