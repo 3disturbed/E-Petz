@@ -95,6 +95,7 @@ A profile dashboard where players can:
 [Return to Table of Contents](#table-of-contents)
 
 ### Auction Manager
+![image](https://github.com/user-attachments/assets/acca78e2-f1d7-4765-96ff-f65820f7aa64)
 
 An interface to:
 - List pets, eggs, and items for auction.
