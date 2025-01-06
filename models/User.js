@@ -20,7 +20,7 @@ class User {
                 name: 'Common Egg',
                 type: 'Egg',
                 quantity: 5,
-                image: './Images/Items/common-egg.png',
+                image: './Images/Eggs/CommonEgg.png',
                 description: 'A common egg that might hatch into a pet.'
             }],
             coins: 0,
