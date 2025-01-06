@@ -1,68 +1,21 @@
-let isLoggedIn = false;
-let socket = null;
-let currentUsername = ''; // Add this line to store username
-let currentChannel = 'General';
+window.isLoggedIn = false;
+window.socket = null;
+window.currentUsername = '';
+window.currentChannel = 'General';
 
-function connectSocket() {
-    const sessionKey = localStorage.getItem('sessionKey');
-    if (sessionKey && !socket) {
-        socket = io({
-            query: { sessionKey }
-        });
+import {
+    fetchAndUpdateInventory,
+    updateInventoryDisplay,
+    displayFilteredItems,
+    handleItemAction
+} from './modals/inventoryModal.js';
 
-        socket.on('connect_error', (error) => {
-            console.error('Socket connection error:', error);
-            socket = null;
-        });
-
-        socket.on('messageHistory', (history) => {
-            displayChannelMessages(history[currentChannel] || []);
-        });
-
-        socket.on('channelMessage', (data) => {
-            if (data.channel === currentChannel) {
-                displayMessage(data);
-            }
-        });
-    }
-}
-
-function displayChannelMessages(messages) {
-    const chatBox = document.getElementById('chatMessages');
-    chatBox.innerHTML = ''; // Clear existing messages
-    messages.forEach(data => displayMessage(data));
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-function displayMessage(data) {
-    const chatBox = document.getElementById('chatMessages');
-    if (chatBox) {
-        const msgDiv = document.createElement('div');
-        const isLocal = data.user === currentUsername;
-        console.log(data.user  + " " + currentUsername);
-        const usernameSpan = document.createElement('span');
-        usernameSpan.className = isLocal ? 'message-username-local' : 'message-username-remote';
-        usernameSpan.textContent = `${data.user}: `;
-  
-     
-        
-        const userSubDiv = document.createElement('div');  
-
-        userSubDiv.appendChild(usernameSpan);      
-        msgDiv.appendChild(userSubDiv);
-
-
-        // create subdiv for message
-        const msgSubDiv = document.createElement('div');
-        msgSubDiv.className = isLocal ? 'message-local' : 'message-remote';
-
-        msgSubDiv.appendChild(document.createTextNode(data.message));
-       
-        msgDiv.appendChild(msgSubDiv);
-        chatBox.appendChild(msgDiv);
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
-}
+import {
+    connectSocket,
+    handleGlobalChatSend,
+    displayChannelMessages,
+    displayMessage
+} from './modals/globalChatModal.js';
 
 const savedSessionKey = localStorage.getItem('sessionKey') || '';
 
@@ -74,7 +27,7 @@ function toggleForms() {
 }
 
 // Add modal toggle function
-function toggleModal(show, modalId = 'loginModal') {
+window.toggleModal = function(show, modalId = 'loginModal') {
     const modal = document.getElementById(modalId);
     modal.style.display = show ? 'flex' : 'none';
     
@@ -236,29 +189,6 @@ function updateNavLinks() {
     }
 }
 
-// Handle sending global chat messages
-async function handleGlobalChatSend(event) {
-    if (event) event.preventDefault();
-    const chatInput = document.getElementById('chatInput');
-    const message = chatInput.value.trim();
-    if (!message) return;
-    try {
-        const sessionKey = localStorage.getItem('sessionKey') || '';
-        await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                sessionKey, 
-                message,
-                channel: currentChannel 
-            })
-        });
-        chatInput.value = '';
-    } catch (error) {
-        console.error('Error sending chat:', error);
-    }
-}
-
 // Add tab switching functionality
 document.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelectorAll('.chat-tab');
@@ -303,124 +233,4 @@ window.onload = async function() {
         localStorage.removeItem('username');
     }
     toggleModal(true);
-}
-
-// Inventory management functions
-function getFilterTooltip(type) {
-    switch(type) {
-        case 'Egg':
-            return 'View all eggs that can hatch into pets';
-        case 'Food':
-            return 'View all food items to feed your pets';
-        case 'Toy':
-            return 'View all toys to play with your pets';
-        case 'Cosmetic':
-            return 'View all cosmetic items and accessories';
-        default:
-            return 'View all items in your inventory';
-    }
-}
-
-function updateInventoryDisplay(inventory) {
-    const itemsList = document.getElementById('itemsList');
-    const filtersList = document.getElementById('itemTypeFilters');
-    const coinDisplay = document.getElementById('coinCount');
-    
-    coinDisplay.textContent = inventory.coins;
-
-    // Get unique item types
-    const itemTypes = [...new Set(inventory.items.map(item => item.type))];
-    
-    // Create filters with tooltips
-    filtersList.innerHTML = `
-        <button class="filter-button active" data-type="all">All Items</button>
-        ${itemTypes.map(type => `
-            <button class="filter-button" data-type="${type}">${type}</button>
-        `).join('')}
-    `;
-
-    // Add filter click handlers and tooltips
-    filtersList.querySelectorAll('.filter-button').forEach(button => {
-        const type = button.dataset.type;
-        
-        // Add tooltip
-        tooltip.attachToElement(button, getFilterTooltip(type));
-
-        // Add click handler
-        button.addEventListener('click', () => {
-            filtersList.querySelectorAll('.filter-button').forEach(b => b.classList.remove('active'));
-            button.classList.add('active');
-            displayFilteredItems(inventory.items, type);
-        });
-    });
-
-    // Initial display of all items
-    displayFilteredItems(inventory.items, 'all');
-}
-
-function displayFilteredItems(items, filterType) {
-    const itemsList = document.getElementById('itemsList');
-    itemsList.innerHTML = '';
-
-    const filteredItems = filterType === 'all' 
-        ? items 
-        : items.filter(item => item.type === filterType);
-
-    filteredItems.forEach(item => {
-        const itemElement = document.createElement('div');
-        itemElement.className = 'item-entry';
-        itemElement.setAttribute('data-type', item.type);
-        itemElement.innerHTML = `
-            <img src="${item.image}" alt="${item.name}" class="item-icon">
-            <div class="item-details">
-                <div class="item-name">${item.name}</div>
-                ${item.quantity > 1 ? `<div class="item-quantity">x${item.quantity}</div>` : ''}
-            </div>
-            <button class="item-action" onclick="handleItemAction('${item.id}')">${getItemActionButton(item)}</button>
-        `;
-
-        // Attach tooltip to the item element
-        tooltip.attachToElement(itemElement, item.description);
-
-        itemsList.appendChild(itemElement);
-    });
-}
-
-// Remove old tooltip event listeners since they're now handled by tooltip.js
-// ...rest of the code...
-
-function getItemActionButton(item) {
-    // Customize button text based on item type
-    switch(item.type) {
-        case 'food':
-            return 'Feed';
-        case 'toy':
-            return 'Play';
-        case 'cosmetic':
-            return 'Wear';
-        default:
-            return 'Use';
-    }
-}
-
-function handleItemAction(itemId) {
-    // Handle item usage based on type
-    console.log('Using item:', itemId);
-    // Implement item usage logic here
-}
-
-async function fetchAndUpdateInventory() {
-    try {
-        const response = await fetch('/api/inventory', {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('sessionKey')}`
-            }
-        });
-        if (response.ok) {
-            const data = await response.json();
-            updateInventoryDisplay(data.inventory);
-        }
-    } catch (error) {
-        console.error('Error fetching inventory:', error);
-    }
 }
