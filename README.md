@@ -59,15 +59,18 @@ E-Petz is an interactive idle game where players can:
 ---
 
 ## UI Design
-
-![image](https://github.com/user-attachments/assets/8dd9102d-5d5c-4500-b026-2b2c7747d5b1)
+| Wireframe | Actual |
+|----------|----------|
+| ![image](https://github.com/user-attachments/assets/8dd9102d-5d5c-4500-b026-2b2c7747d5b1) | ![image](https://github.com/user-attachments/assets/20afa184-b8f0-42b1-8c37-1d3bbb5e5567) |
 
 - **Aiming for large image background with fixed Header and Footer and modal-based content.**
 - **Feel Like an App, not a website, using SPA and Modal Management.**
 
 ### Login / Register Modal
+| Wireframe | Actual |
+|----------|----------|
+| ![image](https://github.com/user-attachments/assets/5c4d585c-ac95-4daf-a6c0-070daf3b9e81)  | ![image](https://github.com/user-attachments/assets/689d6575-b927-4ac9-92ee-7d273df2de64)  |
 
-![image](https://github.com/user-attachments/assets/5c4d585c-ac95-4daf-a6c0-070daf3b9e81)
 
 - Simple, clean design with bright, noisy images full of color.
 - The color scheme transitions from blue (signifying Common to Rare) to gold (Legendary to Mythic) across the screen, subtly indicating game progression.
