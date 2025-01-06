@@ -777,6 +777,7 @@ a:hover {
     border: 2px solid #4CAF50;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
     overflow-y: auto;
+    height: 70vh;
 }
 
 .profile-tab {
@@ -806,8 +807,8 @@ a:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.profile-section h3 {
-    color: #4CAF50;
+.profile-section-h3 {
+    color: white;
     margin: 0 0 15px 0;
     padding-bottom: 10px;
     border-bottom: 2px solid #4CAF50;
@@ -840,9 +841,9 @@ a:hover {
     margin-top: 10px;
 }
 
-.bio textarea {
-    width: 100%;
-    height: 100px;
+.bio-textarea {
+    width: 98%;
+    height: 200px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid #4CAF50;
     border-radius: 5px;
