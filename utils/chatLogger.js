@@ -4,14 +4,33 @@ const path = require('path');
 const CHATLOG_DIR = path.join(process.cwd(), 'chatlog');
 const PROCESSED_DIR = path.join(process.cwd(), 'chatlog', 'processed');
 
-async function ensureDirectories() {
+const ensureDirectories = async () => {
+    const logsDir = path.join(__dirname, '..', 'logs');
+    const channelDirs = [
+        'General',
+        'The Inn',
+        'The Park',
+        'The Groomers',
+        'Pet Center',
+        'Vet',
+        'Mall',
+        'Auction',
+        'Pets',
+        'Quests'
+    ];
+
     try {
-        await fs.mkdir(CHATLOG_DIR, { recursive: true });
-        await fs.mkdir(PROCESSED_DIR, { recursive: true });
+        await fs.mkdir(logsDir, { recursive: true });
+        
+        for (const channel of channelDirs) {
+            const channelDir = path.join(logsDir, channel.replace(/ /g, '_'));
+            await fs.mkdir(channelDir, { recursive: true });
+        }
     } catch (error) {
-        console.error('Error creating chat log directories:', error);
+        console.error('Error creating directories:', error);
+        throw error;
     }
-}
+};
 
 async function logChatMessage(username, channel, message) {
     const timestamp = Date.now();
