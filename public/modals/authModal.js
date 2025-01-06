@@ -7,17 +7,17 @@ export function toggleForms() {
 
 export async function handleLogin(event) {
     event.preventDefault();
-    const formData = new FormData(event.target);
+    const form = event.target;
+    const formData = new FormData(form);
+    
     try {
         const response = await fetch('/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                email: formData.get('email'),
-                password: formData.get('password'),
-            }),
+            body: JSON.stringify(Object.fromEntries(formData)),
+            credentials: 'same-origin'  // Include cookies in the request
         });
         if (response.ok) {
             const data = await response.json();
