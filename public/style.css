@@ -378,7 +378,7 @@ a:hover {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
-    padding: 20px;
+    padding: 10px;
     background-color: rgba(23, 47, 71, 0.9);
     border-radius: 8px;
     margin-top: 20px;
@@ -425,10 +425,8 @@ a:hover {
 
 .inventory-header {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
-    padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .inventory-coins {
@@ -438,10 +436,11 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 15px 25px;
+    padding: 5px 15px;
     border-radius: 12px;
     border: 2px solid #FFD700;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    left: auto;
 }
 
 .inventory-coins img {
@@ -468,6 +467,7 @@ a:hover {
 
 .inventory-modal {
     width: 90%;
+    padding: 10px;
     max-width: 1200px;
     height: 80vh;
 }
@@ -722,6 +722,7 @@ a:hover {
     width: 90%;
     max-width: 1200px;
     height: 80vh;
+    overflow: hidden; /* Prevent modal from scrolling */
 }
 
 .profile-layout {
@@ -731,48 +732,40 @@ a:hover {
     padding: 20px;
 }
 
-.profile-sidebar {
+.profile-nav {
     width: 200px;
-    background: rgba(14, 32, 50, 0.95);
-    padding: 20px;
-    border-radius: 15px;
-    border: 2px solid #4CAF50;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.profile-nav-item {
+.profile-tab-btn {
     width: 100%;
-    padding: 12px;
+    padding: 12px 15px;
     text-align: left;
-    background: rgba(76, 175, 80, 0.1);
+    background: rgba(14, 32, 50, 0.95);
     border: 2px solid #4CAF50;
     color: white;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.profile-nav-item:hover {
+.profile-tab-btn:hover {
     background: rgba(76, 175, 80, 0.2);
     transform: translateX(5px);
 }
 
-.profile-nav-item.active {
+.profile-tab-btn.active {
     background: #4CAF50;
     transform: translateX(10px);
 }
 
-.profile-nav-item.delete-account {
+.profile-tab-btn.delete {
     margin-top: auto;
     border-color: #ff4444;
     color: #ff4444;
-}
-
-.profile-nav-item.delete-account:hover {
-    background: rgba(255, 68, 68, 0.1);
 }
 
 .profile-content {
@@ -782,11 +775,15 @@ a:hover {
     border-radius: 15px;
     border: 2px solid #4CAF50;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    overflow-y: auto;
 }
 
-.warning-text {
-    color: #ff4444;
-    margin-bottom: 20px;
+.profile-tab {
+    display: none;
+}
+
+.profile-tab.active {
+    display: block;
 }
 
 .profile-sidebar {
@@ -893,4 +890,72 @@ a:hover {
 
 .delete-account-btn:hover {
     background: #cc0000;
+}
+
+.profile-layout {
+    padding: 20px;
+    height: 100%;
+}
+
+.profile-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    height: calc(100% - 40px); /* Account for padding */
+    overflow: hidden; /* Prevent sections from scrolling */
+}
+
+.profile-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    overflow-y: auto; /* Allow column to scroll */
+    padding-right: 10px; /* Space for scrollbar */
+}
+
+/* Add custom scrollbar for profile columns */
+.profile-column::-webkit-scrollbar {
+    width: 8px;
+}
+
+.profile-column::-webkit-scrollbar-track {
+    background: rgba(23, 47, 71, 0.9);
+    border-radius: 4px;
+}
+
+.profile-column::-webkit-scrollbar-thumb {
+    background-color: #4CAF50;
+    border-radius: 4px;
+}
+
+.profile-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    height: 100%;
+}
+
+.profile-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-section {
+    background: rgba(14, 32, 50, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #4CAF50;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    height: fit-content;
+}
+
+.delete-section {
+    margin-top: auto;
+    text-align: center;
+}
+
+.profile-section.stats {
+    flex-grow: 1;
 }

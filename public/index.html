@@ -144,34 +144,33 @@
         <div class="modal-content profile-modal">
             <span class="close-button" onclick="toggleModal(false, 'profileModal')">&times;</span>
             <div class="profile-layout">
-                <div class="profile-sidebar">
-                    <div class="profile-section vip-status">
+                <div class="profile-nav">
+                    <button class="profile-tab-btn active" data-tab="vip">VIP</button>
+                    <button class="profile-tab-btn" data-tab="avatar">My Profile Pic</button>
+                    <button class="profile-tab-btn" data-tab="bio">My Bio</button>
+                    <button class="profile-tab-btn" data-tab="stats">My Stats</button>
+                    <button class="profile-tab-btn delete" data-tab="delete">Delete Account</button>
+                </div>
+                <div class="profile-content">
+                    <div id="vip-tab" class="profile-tab active">
                         <h3>VIP Status</h3>
                         <span class="vip-badge">Free Member</span>
                     </div>
-                    <div class="profile-section profile-pic">
+                    <div id="avatar-tab" class="profile-tab">
                         <h3>My Profile Picture</h3>
                         <div class="pic-container">
                             <img src="./Images/default-avatar.png" alt="Profile Picture">
                             <button class="change-pic-btn">Change Picture</button>
                         </div>
                     </div>
-                    <div class="profile-section bio">
+                    <div id="bio-tab" class="profile-tab">
                         <h3>My Bio</h3>
                         <textarea placeholder="Write something about yourself..."></textarea>
                         <button class="save-bio-btn">Save Bio</button>
                     </div>
-                    <div class="profile-section stats">
+                    <div id="stats-tab" class="profile-tab">
                         <h3>My Stats</h3>
                         <div class="stats-grid">
-                            <div class="stat-item">
-                                <span class="stat-label">Pets</span>
-                                <span class="stat-value">0</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">Level</span>
-                                <span class="stat-value">1</span>
-                            </div>
                             <div class="stat-item">
                                 <span class="stat-label">Pets</span>
                                 <span class="stat-value">0</span>
@@ -186,7 +185,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="profile-section" id="deleteSection" style="display: none;">
+                    <div id="delete-tab" class="profile-tab">
                         <h3>Delete Account</h3>
                         <p class="warning-text">Warning: This action cannot be undone!</p>
                         <button class="delete-account-btn">Delete My Account</button>
@@ -239,6 +238,12 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="tooltip.js"></script>
     <script src="modals/authModal.js" type="module"></script>
+    <script src="modals/profileModal.js"></script>
+    <script type="module" src="client.js"></script>
+</body>
+</html>
+    <script src="modals/authModal.js" type="module"></script>
+
     <script type="module" src="client.js"></script>
 </body>
 </html>

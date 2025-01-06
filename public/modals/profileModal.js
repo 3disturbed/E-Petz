@@ -1,5 +1,5 @@
-function getProfileTooltip(section) {
-    switch(section) {
+function getProfileTooltip(tabId) {
+    switch(tabId) {
         case 'vip':
             return 'View and upgrade your membership status';
         case 'avatar':
@@ -7,7 +7,7 @@ function getProfileTooltip(section) {
         case 'bio':
             return 'Update your personal information';
         case 'stats':
-            return 'View your achievements and progress';
+            return 'View your game statistics';
         case 'delete':
             return 'Permanently delete your account';
         default:
@@ -15,33 +15,34 @@ function getProfileTooltip(section) {
     }
 }
 
-function initializeProfile() {
-    const navItems = document.querySelectorAll('.profile-nav-item');
-    navItems.forEach(item => {
-        // Add tooltips
-        tooltip.attachToElement(item, getProfileTooltip(item.dataset.section));
+function initializeProfileTabs() {
+    const tabButtons = document.querySelectorAll('.profile-tab-btn');
+    const tabs = document.querySelectorAll('.profile-tab');
 
-        // Add click handlers
-        item.addEventListener('click', () => {
-            // Remove active class from all items
-            navItems.forEach(nav => nav.classList.remove('active'));
-            // Add active class to clicked item
-            item.classList.add('active');
-            
-            // Hide all sections
-            document.querySelectorAll('.profile-section').forEach(section => {
-                section.style.display = 'none';
-            });
-            
-            // Show selected section
-            const sectionId = `${item.dataset.section}Section`;
-            document.getElementById(sectionId).style.display = 'block';
+    function switchTab(tabId) {
+        // Remove active class from all tabs and buttons
+        tabs.forEach(tab => tab.classList.remove('active'));
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+
+        // Add active class to selected tab and button
+        document.getElementById(`${tabId}-tab`).classList.add('active');
+        document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+    }
+
+    // Add click handlers to buttons
+    tabButtons.forEach(button => {
+        const tabId = button.dataset.tab;
+        // Add tooltip
+        tooltip.attachToElement(button, getProfileTooltip(tabId));
+        
+        button.addEventListener('click', () => {
+            switchTab(tabId);
         });
     });
 
-    // Show first section by default
-    navItems[0].click();
+    // Show first tab by default
+    switchTab('vip');
 }
 
 // Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', initializeProfile);
+document.addEventListener('DOMContentLoaded', initializeProfileTabs);
