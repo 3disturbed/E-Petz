@@ -90,8 +90,16 @@
     <div id="inventoryModal" class="modal">
         <div class="modal-content">
             <span class="close-button" onclick="toggleModal(false, 'inventoryModal')">&times;</span>
-            <h2>Inventory</h2>
-            <!-- Inventory content goes here -->
+            <div class="inventory-header">
+                <h2>Inventory</h2>
+                <div class="inventory-coins">
+                    <img src="./Images/coin.png" alt="Coins">
+                    <span id="coinCount">0</span>
+                </div>
+            </div>
+            <div class="inventory-container" id="inventoryGrid">
+                <!-- Inventory slots will be generated here -->
+            </div>
         </div>
     </div>
     <div id="auctionsModal" class="modal">
@@ -125,10 +133,7 @@
 
     <div id="globalChatModal" class="modal">
         <div class="modal-content gc">
-            <div class="chat-header">
-                <h2>Chat</h2>
-                <span class="close-button" onclick="toggleModal(false, 'globalChatModal')">&times;</span>
-            </div>
+     
             <div class="chat-tabs">
                 <button class="chat-tab" data-channel="The Inn">Inn</button>
                 <button class="chat-tab" data-channel="The Park">Park</button>
@@ -137,6 +142,8 @@
                 <button class="chat-tab" data-channel="Vet">Vet</button>
                 <button class="chat-tab" data-channel="Mall">Mall</button>
                 <button class="chat-tab" data-channel="Auction">Auction</button>
+            </div>       <div class="chat-header">
+                <span class="close-button" onclick="toggleModal(false, 'globalChatModal')">&times;</span>
             </div>
             <div class="chat-content">
                 <div id="chatMessages">

@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const cookieParser = require('cookie-parser');
 const http = require('http');
 const { Server } = require('socket.io');
+const { ensureDirectories, processLogs } = require('./utils/chatLogger');
 let User;
 try {
     User = require('./models/User');
@@ -122,6 +123,26 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
+// Add inventory endpoint
+app.get('/api/inventory', async (req, res) => {
+    try {
+        const sessionKey = req.headers.authorization?.split(' ')[1];
+        if (!sessionKey) {
+            return res.status(401).json({ message: 'No session key provided' });
+        }
+
+        const user = await User.findBySessionKey(sessionKey);
+        if (!user) {
+            return res.status(401).json({ message: 'Invalid session' });
+        }
+
+        res.json({ inventory: user.inventory });
+    } catch (error) {
+        console.error('Inventory error:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 // Add socket authentication middleware
 io.use(async (socket, next) => {
     const sessionKey = socket.handshake.query.sessionKey;
@@ -154,7 +175,14 @@ io.on('connection', async (socket) => {
     });
 });
 
+// Initialize chat logging
+async function initializeChatLogging() {
+    await ensureDirectories();
+    await processLogs();
+}
+
 const PORT = process.env.PORT || 3234;
-server.listen(PORT, () => {
+server.listen(PORT, async () => {
+    await initializeChatLogging();
     console.log(`Server running at http://127.0.0.1:${PORT}`);
 });

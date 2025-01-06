@@ -1,6 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 const bcrypt = require('bcrypt');
+const { logChatMessage } = require('../utils/chatLogger');
 
 // Add constant for message history size
 const MESSAGE_HISTORY_SIZE = 20;
@@ -13,6 +14,11 @@ class User {
         this.password = data.password;
         this.createdAt = data.createdAt || Date.now();
         this.lastLogin = data.lastLogin || null;
+        this.inventory = data.inventory || {
+            items: [],
+            coins: 0,
+            maxSlots: 20
+        };
     }
 
     static async findByEmail(email) {
@@ -138,6 +144,9 @@ class User {
             timestamp: Date.now()
         };
 
+        // Log the message
+        await logChatMessage(messageData.user, channel, message);
+
         // Ensure channel exists and is an array
         if (!Array.isArray(channelMessages[channel])) {
             channelMessages[channel] = [];
@@ -152,6 +161,50 @@ class User {
         io.emit('channelMessage', messageData);
     }
 
+    async addItem(item) {
+        if (this.inventory.items.length >= this.inventory.maxSlots) {
+            throw new Error('Inventory is full');
+        }
+        this.inventory.items.push(item);
+        await this.saveUser();
+    }
+
+    async removeItem(itemId) {
+        const index = this.inventory.items.findIndex(item => item.id === itemId);
+        if (index !== -1) {
+            this.inventory.items.splice(index, 1);
+            await this.saveUser();
+            return true;
+        }
+        return false;
+    }
+
+    async addCoins(amount) {
+        this.inventory.coins += amount;
+        await this.saveUser();
+    }
+
+    async saveUser() {
+        try {
+            const files = await fs.readdir(User.usersDir);
+            for (const file of files) {
+                const userData = JSON.parse(
+                    await fs.readFile(path.join(User.usersDir, file), 'utf8')
+                );
+                if (userData.email === this.email) {
+                    await fs.writeFile(
+                        path.join(User.usersDir, file),
+                        JSON.stringify(this, null, 2)
+                    );
+                    break;
+                }
+            }
+        } catch (error) {
+            console.error('Error saving user:', error);
+            throw error;
+        }
+    }
+
     toJSON() {
         return {
             username: this.username, // include username
@@ -160,7 +213,8 @@ class User {
             password: this.password,
             hashedSessionKey: this.hashedSessionKey,
             createdAt: this.createdAt,
-            lastLogin: this.lastLogin
+            lastLogin: this.lastLogin,
+            inventory: this.inventory
         };
     }
 }

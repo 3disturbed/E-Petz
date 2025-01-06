@@ -43,13 +43,13 @@ function displayMessage(data) {
         const usernameSpan = document.createElement('span');
         usernameSpan.className = isLocal ? 'message-username-local' : 'message-username-remote';
         usernameSpan.textContent = `${data.user}: `;
-        let hr = document.createElement('hr');
+  
      
         
-        const userSubDiv = document.createElement('div');
-        userSubDiv.appendChild(usernameSpan);
+        const userSubDiv = document.createElement('div');  
+
+        userSubDiv.appendChild(usernameSpan);      
         msgDiv.appendChild(userSubDiv);
-        hr = document.createElement('hr');
 
 
         // create subdiv for message
@@ -77,6 +77,11 @@ function toggleForms() {
 function toggleModal(show, modalId = 'loginModal') {
     const modal = document.getElementById(modalId);
     modal.style.display = show ? 'flex' : 'none';
+    
+    // Update inventory when opening inventory modal
+    if (modalId === 'inventoryModal' && show && isLoggedIn) {
+        fetchAndUpdateInventory();
+    }
 }
 
 // Close modal when clicking outside
@@ -236,4 +241,57 @@ window.onload = async function() {
         localStorage.removeItem('username');
     }
     toggleModal(true);
+}
+
+// Inventory management functions
+function updateInventoryDisplay(inventory) {
+    const grid = document.getElementById('inventoryGrid');
+    const coinDisplay = document.getElementById('coinCount');
+    
+    grid.innerHTML = '';
+    coinDisplay.textContent = inventory.coins;
+
+    // Create all slots (filled + empty)
+    for (let i = 0; i < inventory.maxSlots; i++) {
+        const slot = document.createElement('div');
+        slot.className = 'inventory-slot';
+        
+        if (i < inventory.items.length) {
+            const item = inventory.items[i];
+            slot.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                ${item.quantity > 1 ? `<span class="item-count">${item.quantity}</span>` : ''}
+                <div class="inventory-tooltip">
+                    <strong>${item.name}</strong><br>
+                    ${item.description}
+                </div>
+            `;
+            slot.onclick = () => handleItemClick(item);
+        } else {
+            slot.classList.add('empty');
+        }
+        
+        grid.appendChild(slot);
+    }
+}
+
+function handleItemClick(item) {
+    // Handle item usage, can be expanded based on item type
+    console.log('Item clicked:', item);
+}
+
+async function fetchAndUpdateInventory() {
+    try {
+        const response = await fetch('/api/inventory', {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('sessionKey')}`
+            }
+        });
+        if (response.ok) {
+            const data = await response.json();
+            updateInventoryDisplay(data.inventory);
+        }
+    } catch (error) {
+        console.error('Error fetching inventory:', error);
+    }
 }
