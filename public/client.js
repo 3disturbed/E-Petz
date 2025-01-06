@@ -19,12 +19,7 @@ import {
 
 const savedSessionKey = localStorage.getItem('sessionKey') || '';
 
-function toggleForms() {
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    loginForm.style.display = loginForm.style.display === 'none' ? 'block' : 'none';
-    registerForm.style.display = registerForm.style.display === 'none' ? 'block' : 'none';
-}
+// Remove the auth functions as they're now in authModal.js
 
 // Add modal toggle function
 window.toggleModal = function(show, modalId = 'loginModal') {
@@ -45,68 +40,6 @@ window.onclick = function(event) {
             modal.style.display = 'none';
         }
     });
-}
-
-async function handleLogin(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    try {
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: formData.get('email'),
-                password: formData.get('password'),
-            }),
-        });
-        if (response.ok) {
-            const data = await response.json();
-            localStorage.setItem('sessionKey', data.sessionKey);
-            currentUsername = data.username; // Store the username
-            localStorage.setItem('username', data.username); // Also store in localStorage
-            isLoggedIn = true;
-            updateNavLinks();
-            toggleModal(false);
-            document.getElementById('fixed-right-navbar').style.display = 'flex';
-            connectSocket(); // Connect socket after successful login
-        } else {
-            const errorData = await response.json();
-            alert(`Login failed: ${errorData.message}`);
-        }
-    } catch (error) {
-        console.error('Login failed:', error);
-        alert('Login failed: Server error');
-    }
-}
-
-async function handleRegister(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    try {
-        const response = await fetch('/api/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                username: formData.get('username'),
-                name: formData.get('name'),
-                email: formData.get('email'),
-                password: formData.get('password'),
-            }),
-        });
-        if (response.ok) {
-            toggleForms();
-        } else {
-            const errorData = await response.json();
-            alert(`Registration failed: ${errorData.message}`);
-        }
-    } catch (error) {
-        console.error('Registration failed:', error);
-        alert('Registration failed: Server error');
-    }
 }
 
 function getNavTooltip(type) {
@@ -136,7 +69,8 @@ function getNavTooltip(type) {
     }
 }
 
-function updateNavLinks() {
+// Make updateNavLinks globally available
+window.updateNavLinks = function updateNavLinks() {
     const navLinks = document.getElementById('nav-links');
     const rightNav = document.getElementById('fixed-right-navbar');
     
