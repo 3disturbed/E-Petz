@@ -35,9 +35,9 @@
             <img src="./Images/EpetzLogoAlt.png" alt="EPetz Logo" class="modal_logo">
             <span class="close-button" onclick="toggleModal(false)">&times;</span>
             <div id="loginForm">
-                <form id="login-form" onsubmit="handleLogin(event)">
-                    <input type="email" name="email" placeholder="Email" required>
-                    <input type="password" name="password" placeholder="Password" required>
+                <form id="login-form" onsubmit="handleLogin(event)" method="post">
+                    <input type="email" name="email" placeholder="Email" required autocomplete="email">
+                    <input type="password" name="password" placeholder="Password" required autocomplete="current-password">
                     <button type="submit">Login</button>
                 </form>
                 <p><hr>Don't have an account? <br><a href="#" onclick="toggleForms()">Register</a><hr></p>
