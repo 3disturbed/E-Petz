@@ -88,20 +88,33 @@
         </div>
     </div>
     <div id="inventoryModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content inventory-modal">
             <span class="close-button" onclick="toggleModal(false, 'inventoryModal')">&times;</span>
             <div class="inventory-header">
-                <h2>Inventory</h2>
                 <div class="inventory-coins">
                     <img src="./Images/coin.png" alt="Coins">
                     <span id="coinCount">0</span>
                 </div>
             </div>
-            <div class="inventory-container" id="inventoryGrid">
-                <!-- Inventory slots will be generated here -->
+            <div class="inventory-content">
+                <div class="inventory-layout">
+                    <div class="inventory-filters">
+                        <h3>Filters</h3>
+                        <div id="itemTypeFilters">
+                            <!-- Filters will be populated here -->
+                        </div>
+                    </div>
+                    <div class="inventory-items">
+                        <div id="itemsList">
+                            <!-- Items will be populated here -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    
     <div id="auctionsModal" class="modal">
         <div class="modal-content">
             <span class="close-button" onclick="toggleModal(false, 'auctionsModal')">&times;</span>
@@ -171,6 +184,7 @@
         <button onclick="toggleModal(true, 'globalChatModal')">Global Chat</button>
     </div>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="tooltip.js"></script>
     <script src="client.js"></script>
 </body>
 </html>

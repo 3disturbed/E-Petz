@@ -15,10 +15,22 @@ class User {
         this.createdAt = data.createdAt || Date.now();
         this.lastLogin = data.lastLogin || null;
         this.inventory = data.inventory || {
-            items: [],
+            items: [{
+                id: 'common-egg-1',
+                name: 'Common Egg',
+                type: 'Egg',
+                quantity: 5,
+                image: './Images/Items/common-egg.png',
+                description: 'A common egg that might hatch into a pet.'
+            }],
             coins: 0,
             maxSlots: 20
         };
+        // Ensure all items have a type property
+        this.inventory.items = this.inventory.items.map(item => ({
+            type: 'misc', // default type
+            ...item
+        }));
     }
 
     static async findByEmail(email) {

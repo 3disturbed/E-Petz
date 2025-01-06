@@ -156,21 +156,83 @@ async function handleRegister(event) {
     }
 }
 
+function getNavTooltip(type) {
+    switch(type) {
+        case 'dashboard':
+            return 'View your pet statistics and daily activities';
+        case 'store':
+            return 'Buy items, eggs, and accessories';
+        case 'pets':
+            return 'Manage and interact with your pets';
+        case 'quests':
+            return 'Complete tasks to earn rewards';
+        case 'inventory':
+            return 'View and manage your items';
+        case 'auctions':
+            return 'Buy and sell items with other players';
+        case 'inbox':
+            return 'Check your messages and notifications';
+        case 'social':
+            return 'Connect with other players';
+        case 'profile':
+            return 'View and edit your profile';
+        case 'globalChat':
+            return 'Chat with other players in different locations';
+        default:
+            return '';
+    }
+}
+
 function updateNavLinks() {
     const navLinks = document.getElementById('nav-links');
+    const rightNav = document.getElementById('fixed-right-navbar');
+    
     if (isLoggedIn) {
-        navLinks.innerHTML = `
-            <button onclick="toggleModal(true, 'dashboardModal')">Dashboard</button>
-            <button onclick="toggleModal(true, 'storeModal')">Store</button>
-            <button onclick="toggleModal(true, 'petsModal')">Pets</button>
-            <button onclick="toggleModal(true, 'questsModal')">Quests</button>
-            <button onclick="toggleModal(true, 'inventoryModal')">Inventory</button>
-            <button onclick="toggleModal(true, 'auctionsModal')">Auctions</button>
-        `;
-        document.getElementById('fixed-right-navbar').style.display = 'flex';
+        // Main navigation buttons
+        const mainNavButtons = [
+            { id: 'dashboard', text: 'Dashboard' },
+            { id: 'store', text: 'Store' },
+            { id: 'pets', text: 'Pets' },
+            { id: 'quests', text: 'Quests' },
+            { id: 'inventory', text: 'Inventory' },
+            { id: 'auctions', text: 'Auctions' }
+        ];
+
+        navLinks.innerHTML = mainNavButtons.map(btn => `
+            <button onclick="toggleModal(true, '${btn.id}Modal')">${btn.text}</button>
+        `).join('');
+
+        // Right sidebar buttons
+        const rightNavButtons = [
+            { id: 'inbox', text: 'Inbox' },
+            { id: 'social', text: 'Social' },
+            { id: 'profile', text: 'My Profile' },
+            { id: 'globalChat', text: 'Global Chat' }
+        ];
+
+        rightNav.innerHTML = rightNavButtons.map(btn => `
+            <button onclick="toggleModal(true, '${btn.id}Modal')">${btn.text}</button>
+        `).join('');
+
+        // Add tooltips to all navigation buttons
+        [...mainNavButtons, ...rightNavButtons].forEach(btn => {
+            const button = document.querySelector(`button[onclick*="${btn.id}Modal"]`);
+            if (button) {
+                tooltip.attachToElement(button, getNavTooltip(btn.id));
+            }
+        });
+
+        rightNav.style.display = 'flex';
     } else {
-        navLinks.innerHTML = `<button id="PlayButton" onclick="toggleModal(true)">Play Now!</button>`;
-        document.getElementById('fixed-right-navbar').style.display = 'none';
+        const playButton = `<button id="PlayButton" onclick="toggleModal(true)">Play Now!</button>`;
+        navLinks.innerHTML = playButton;
+        rightNav.style.display = 'none';
+
+        // Add tooltip to play button
+        const playBtn = document.getElementById('PlayButton');
+        if (playBtn) {
+            tooltip.attachToElement(playBtn, 'Start your pet adventure!');
+        }
     }
 }
 
@@ -244,40 +306,107 @@ window.onload = async function() {
 }
 
 // Inventory management functions
-function updateInventoryDisplay(inventory) {
-    const grid = document.getElementById('inventoryGrid');
-    const coinDisplay = document.getElementById('coinCount');
-    
-    grid.innerHTML = '';
-    coinDisplay.textContent = inventory.coins;
-
-    // Create all slots (filled + empty)
-    for (let i = 0; i < inventory.maxSlots; i++) {
-        const slot = document.createElement('div');
-        slot.className = 'inventory-slot';
-        
-        if (i < inventory.items.length) {
-            const item = inventory.items[i];
-            slot.innerHTML = `
-                <img src="${item.image}" alt="${item.name}">
-                ${item.quantity > 1 ? `<span class="item-count">${item.quantity}</span>` : ''}
-                <div class="inventory-tooltip">
-                    <strong>${item.name}</strong><br>
-                    ${item.description}
-                </div>
-            `;
-            slot.onclick = () => handleItemClick(item);
-        } else {
-            slot.classList.add('empty');
-        }
-        
-        grid.appendChild(slot);
+function getFilterTooltip(type) {
+    switch(type) {
+        case 'Egg':
+            return 'View all eggs that can hatch into pets';
+        case 'Food':
+            return 'View all food items to feed your pets';
+        case 'Toy':
+            return 'View all toys to play with your pets';
+        case 'Cosmetic':
+            return 'View all cosmetic items and accessories';
+        default:
+            return 'View all items in your inventory';
     }
 }
 
-function handleItemClick(item) {
-    // Handle item usage, can be expanded based on item type
-    console.log('Item clicked:', item);
+function updateInventoryDisplay(inventory) {
+    const itemsList = document.getElementById('itemsList');
+    const filtersList = document.getElementById('itemTypeFilters');
+    const coinDisplay = document.getElementById('coinCount');
+    
+    coinDisplay.textContent = inventory.coins;
+
+    // Get unique item types
+    const itemTypes = [...new Set(inventory.items.map(item => item.type))];
+    
+    // Create filters with tooltips
+    filtersList.innerHTML = `
+        <button class="filter-button active" data-type="all">All Items</button>
+        ${itemTypes.map(type => `
+            <button class="filter-button" data-type="${type}">${type}</button>
+        `).join('')}
+    `;
+
+    // Add filter click handlers and tooltips
+    filtersList.querySelectorAll('.filter-button').forEach(button => {
+        const type = button.dataset.type;
+        
+        // Add tooltip
+        tooltip.attachToElement(button, getFilterTooltip(type));
+
+        // Add click handler
+        button.addEventListener('click', () => {
+            filtersList.querySelectorAll('.filter-button').forEach(b => b.classList.remove('active'));
+            button.classList.add('active');
+            displayFilteredItems(inventory.items, type);
+        });
+    });
+
+    // Initial display of all items
+    displayFilteredItems(inventory.items, 'all');
+}
+
+function displayFilteredItems(items, filterType) {
+    const itemsList = document.getElementById('itemsList');
+    itemsList.innerHTML = '';
+
+    const filteredItems = filterType === 'all' 
+        ? items 
+        : items.filter(item => item.type === filterType);
+
+    filteredItems.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.className = 'item-entry';
+        itemElement.setAttribute('data-type', item.type);
+        itemElement.innerHTML = `
+            <img src="${item.image}" alt="${item.name}" class="item-icon">
+            <div class="item-details">
+                <div class="item-name">${item.name}</div>
+                ${item.quantity > 1 ? `<div class="item-quantity">x${item.quantity}</div>` : ''}
+            </div>
+            <button class="item-action" onclick="handleItemAction('${item.id}')">${getItemActionButton(item)}</button>
+        `;
+
+        // Attach tooltip to the item element
+        tooltip.attachToElement(itemElement, item.description);
+
+        itemsList.appendChild(itemElement);
+    });
+}
+
+// Remove old tooltip event listeners since they're now handled by tooltip.js
+// ...rest of the code...
+
+function getItemActionButton(item) {
+    // Customize button text based on item type
+    switch(item.type) {
+        case 'food':
+            return 'Feed';
+        case 'toy':
+            return 'Play';
+        case 'cosmetic':
+            return 'Wear';
+        default:
+            return 'Use';
+    }
+}
+
+function handleItemAction(itemId) {
+    // Handle item usage based on type
+    console.log('Using item:', itemId);
+    // Implement item usage logic here
 }
 
 async function fetchAndUpdateInventory() {
