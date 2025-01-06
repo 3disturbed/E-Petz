@@ -137,10 +137,58 @@
         </div>
     </div>
     <div id="profileModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content profile-modal">
             <span class="close-button" onclick="toggleModal(false, 'profileModal')">&times;</span>
-            <h2>My Profile</h2>
-            <!-- Profile content goes here -->
+            <div class="profile-layout">
+                <div class="profile-sidebar">
+                    <div class="profile-section vip-status">
+                        <h3>VIP Status</h3>
+                        <span class="vip-badge">Free Member</span>
+                    </div>
+                    <div class="profile-section profile-pic">
+                        <h3>My Profile Picture</h3>
+                        <div class="pic-container">
+                            <img src="./Images/default-avatar.png" alt="Profile Picture">
+                            <button class="change-pic-btn">Change Picture</button>
+                        </div>
+                    </div>
+                    <div class="profile-section bio">
+                        <h3>My Bio</h3>
+                        <textarea placeholder="Write something about yourself..."></textarea>
+                        <button class="save-bio-btn">Save Bio</button>
+                    </div>
+                    <div class="profile-section stats">
+                        <h3>My Stats</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-label">Pets</span>
+                                <span class="stat-value">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Level</span>
+                                <span class="stat-value">1</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Pets</span>
+                                <span class="stat-value">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Level</span>
+                                <span class="stat-value">1</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Joined</span>
+                                <span class="stat-value">Today</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-section" id="deleteSection" style="display: none;">
+                        <h3>Delete Account</h3>
+                        <p class="warning-text">Warning: This action cannot be undone!</p>
+                        <button class="delete-account-btn">Delete My Account</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -181,6 +229,7 @@
         <button onclick="toggleModal(true, 'inboxModal')">Inbox</button>
         <button onclick="toggleModal(true, 'socialModal')">Social</button>
         <button onclick="toggleModal(true, 'profileModal')">My Profile</button>
+
         <button onclick="toggleModal(true, 'globalChatModal')">Global Chat</button>
     </div>
     <script src="/socket.io/socket.io.js"></script>
