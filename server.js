@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const cookieParser = require('cookie-parser');
@@ -16,6 +17,28 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 const PUBLIC_DIR = path.join(__dirname, 'public');
+
+// Add directory check function
+function ensureDirectoriesExist() {
+    const directories = [
+        PUBLIC_DIR,
+        path.join(__dirname, 'logs'),
+        path.join(__dirname, 'models'),
+        path.join(__dirname, 'utils'),
+        path.join(__dirname, 'users')  // Add users directory
+    ];
+
+    directories.forEach(dir => {
+        if (!fs.existsSync(dir)) {
+            console.log(`Creating directory: ${dir}`);
+            fs.mkdirSync(dir, { recursive: true });
+        }
+    });
+}
+
+// Ensure directories exist before setting up the app
+ensureDirectoriesExist();
+
 const SESSION_TIMEOUT = 7 * 24 * 60 * 60 * 1000; // 7 days
 const MESSAGE_HISTORY_SIZE = 20;
 const channelMessages = {
@@ -183,6 +206,7 @@ async function initializeChatLogging() {
 
 const PORT = process.env.PORT || 3234;
 server.listen(PORT, async () => {
+    ensureDirectoriesExist(); // Check directories again when starting server
     await initializeChatLogging();
     console.log(`Server running at http://127.0.0.1:${PORT}`);
 });
