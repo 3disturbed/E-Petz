@@ -132,3 +132,4 @@ dist
 # Chat logs
 /chatlog/
 /chatlog/processed/
+/users/
