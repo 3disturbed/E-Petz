@@ -73,8 +73,8 @@ body {
 
 .close-button {
     position: absolute;
-    right: 20px;
-    top: 10px;
+    right: 60px;
+    top: 50px;
     font-size: 30px;
     cursor: pointer;
     color: white;
@@ -378,7 +378,7 @@ a:hover {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
-    padding: 20px;
+    padding: 10px;
     background-color: rgba(23, 47, 71, 0.9);
     border-radius: 8px;
     margin-top: 20px;
@@ -425,10 +425,8 @@ a:hover {
 
 .inventory-header {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
-    padding: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .inventory-coins {
@@ -438,10 +436,11 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 15px 25px;
+    padding: 5px 15px;
     border-radius: 12px;
     border: 2px solid #FFD700;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    left: auto;
 }
 
 .inventory-coins img {
@@ -468,6 +467,7 @@ a:hover {
 
 .inventory-modal {
     width: 90%;
+    padding: 10px;
     max-width: 1200px;
     height: 80vh;
 }
@@ -486,6 +486,7 @@ a:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
     padding: 20px;
     margin-top: 10px;
+    height: 65vh;
 }
 
 .inventory-filters {
@@ -716,4 +717,246 @@ a:hover {
     .chat-input-container button {
         font-size: 0.9rem;
     }
+}
+
+.profile-modal {
+    width: 90%;
+    max-width: 1200px;
+    height: 80vh;
+    overflow: hidden; /* Prevent modal from scrolling */
+    padding: 10px;
+}
+
+.profile-layout {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.profile-nav {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-tab-btn {
+    width: 100%;
+    padding: 12px 15px;
+    text-align: left;
+    background: rgba(14, 32, 50, 0.95);
+    border: 2px solid #4CAF50;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.profile-tab-btn:hover {
+    background: rgba(76, 175, 80, 0.2);
+    transform: translateX(5px);
+}
+
+.profile-tab-btn.active {
+    background: #4CAF50;
+    transform: translateX(10px);
+}
+
+.profile-tab-btn.delete {
+    margin-top: auto;
+    border-color: #ff4444;
+    color: #ff4444;
+}
+
+.profile-content {
+    flex: 1;
+    background: rgba(14, 32, 50, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #4CAF50;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    overflow-y: auto;
+}
+
+.profile-tab {
+    display: none;
+}
+
+.profile-tab.active {
+    display: block;
+}
+
+.profile-sidebar {
+    width: 300px;
+    background: rgba(14, 32, 50, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #4CAF50;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-section {
+    background: rgba(23, 47, 71, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-section h3 {
+    color: #4CAF50;
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4CAF50;
+}
+
+.vip-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    background: #FFD700;
+    color: #000;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.pic-container {
+    text-align: center;
+}
+
+.pic-container img {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    border: 3px solid #4CAF50;
+    margin-bottom: 10px;
+}
+
+.change-pic-btn {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+}
+
+.bio textarea {
+    width: 100%;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #4CAF50;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+.save-bio-btn {
+    width: 100%;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    color: #4CAF50;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    display: block;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.delete-account-btn {
+    margin-top: auto;
+    background: #ff4444;
+    color: white;
+}
+
+.delete-account-btn:hover {
+    background: #cc0000;
+}
+
+.profile-layout {
+    padding: 20px;
+    height: 75vh;
+}
+
+.profile-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    height: calc(100% - 40px); /* Account for padding */
+    overflow: hidden; /* Prevent sections from scrolling */
+}
+
+.profile-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    overflow-y: auto; /* Allow column to scroll */
+    padding-right: 10px; /* Space for scrollbar */
+}
+
+/* Add custom scrollbar for profile columns */
+.profile-column::-webkit-scrollbar {
+    width: 8px;
+}
+
+.profile-column::-webkit-scrollbar-track {
+    background: rgba(23, 47, 71, 0.9);
+    border-radius: 4px;
+}
+
+.profile-column::-webkit-scrollbar-thumb {
+    background-color: #4CAF50;
+    border-radius: 4px;
+}
+
+.profile-sections {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    height: 100%;
+}
+
+.profile-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-section {
+    background: rgba(14, 32, 50, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #4CAF50;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    height: fit-content;
+}
+
+.delete-section {
+    margin-top: auto;
+    text-align: center;
+}
+
+.profile-section.stats {
+    flex-grow: 1;
 }
