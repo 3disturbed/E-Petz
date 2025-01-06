@@ -22,6 +22,9 @@ export function connectSocket() {
     }
 }
 
+// Make connectSocket globally available
+window.connectSocket = connectSocket;
+
 export function displayChannelMessages(messages) {
     const chatBox = document.getElementById('chatMessages');
     chatBox.innerHTML = ''; // Clear existing messages
